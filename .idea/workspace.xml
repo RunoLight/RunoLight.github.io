@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b0051ecd-f6af-49eb-aae9-bcfbbc91233a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/api.html" beforeDir="false" afterPath="$PROJECT_DIR$/api.html" afterDir="false" />
-    </list>
+    <list default="true" id="b0051ecd-f6af-49eb-aae9-bcfbbc91233a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,6 +75,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="794" y="448" key="NewPhpFileDialog" timestamp="1606712358543">
