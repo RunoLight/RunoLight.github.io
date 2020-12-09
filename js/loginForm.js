@@ -17,8 +17,6 @@ const editPhotoURL = document.querySelector('.edit-photo');
 const editPostsCount = document.querySelector('.edit-postsCount');
 const userAvatarElem = document.querySelector('.user-avatar');
 
-
-
 const setUsers = {
   user: null,
   initUser(handler){
