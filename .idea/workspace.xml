@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b0051ecd-f6af-49eb-aae9-bcfbbc91233a" name="Default Changelist" comment="test">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/postsHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/postsHandler.js" afterDir="false" />
-    </list>
+    <list default="true" id="b0051ecd-f6af-49eb-aae9-bcfbbc91233a" name="Default Changelist" comment="test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
