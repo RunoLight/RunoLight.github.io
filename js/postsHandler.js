@@ -4,10 +4,13 @@ const addPostForm = document.querySelector('.add-post');
 const editPostForm = document.querySelector('.edit-post');
 const nextPageButton = document.querySelector('.next-page-button');
 const prevPageButton = document.querySelector('.prev-page-button');
+
 const adminEmail = 'vasia-cotic@yandex.ru'
+
 let editablePostID;
 let showedPosts = 0;
 let postsCount = 999999;
+
 const showAllPosts = (userID, isPrev) => {
     let postsHTML = '';
     let posts = [];
@@ -72,7 +75,12 @@ const showAllPosts = (userID, isPrev) => {
     })}).then(()=> {
         if(userID) {
             database.ref('users/'+userID).once('value', snapshot => {
-                postsCount = snapshot.val().postsOnPage;
+                if (snapshot.val().postsOnPage == null) {
+                    postsCount = 5;
+                }
+                else {
+                    postsCount = snapshot.val().postsOnPage;
+                }
                 if(parseInt(isPrev) === 0 || parseInt(isPrev) === 1){
                     if(parseInt(isPrev) === 1 && showedPosts < posts.length-parseInt(postsCount)-1) {
                         showedPosts = parseInt(showedPosts)+parseInt(postsCount);

@@ -19,7 +19,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b0051ecd-f6af-49eb-aae9-bcfbbc91233a" name="Default Changelist" comment="test" />
+    <list default="true" id="b0051ecd-f6af-49eb-aae9-bcfbbc91233a" name="Default Changelist" comment="test">
+      <change afterPath="$PROJECT_DIR$/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/avatar.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/avatar.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/img/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/postsHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/postsHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new-post.html" beforeDir="false" afterPath="$PROJECT_DIR$/new-post.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,16 +62,16 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Programs/OpenServer/OpenServer/domains/webcoding" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/RunoLight.github.io/index.html" useBuiltInWebServerPort="true">
+    <configuration name="index.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/RunoLight.github.io/index.php" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.index.php" />
       </list>
     </recent_temporary>
   </component>
@@ -73,6 +84,10 @@
       <option name="presentableId" value="Default" />
       <updated>1606712346062</updated>
       <workItem from="1606712348839" duration="2044000" />
+      <workItem from="1607514332831" duration="171000" />
+      <workItem from="1607688767950" duration="599000" />
+      <workItem from="1607811367560" duration="1966000" />
+      <workItem from="1607906883851" duration="1402000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1607480099007</created>
@@ -105,10 +120,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="667" y="168" key="#PHP" timestamp="1607908298362">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="667" y="168" key="#PHP/0.0.1920.1050@0.0.1920.1050" timestamp="1607908298362" />
     <state x="414" y="179" width="1092" height="691" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607480157488">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="414" y="179" width="1092" height="691" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1607480157488" />
+    <state x="1020" y="318" key="FileChooserDialogImpl" timestamp="1607908305118">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1020" y="318" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1607908305118" />
     <state x="794" y="448" key="NewPhpFileDialog" timestamp="1606712358543">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

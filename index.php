@@ -3,60 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Выводим заголовок -->
   <title>Cybersecurity board</title>
-  <!-- Подключаем normalize -->
   <link rel="stylesheet" href="css/normalize.css">
-  <!-- Подключаем стили -->
   <link rel="stylesheet" href="css/style.css">
 
-
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!--  Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js" defer></script>
-
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-       https://firebase.google.com/docs/web/setup#available-libraries -->
-
   <script src="js/loginForm.js" defer></script>
   <script src="js/postsHandler.js" defer></script>
   <script src="js/pageLogic.js" defer></script>
-<!--  <script src="b24/b24.js" defer></script>-->
-<!--  <script src="b24/jQuery.js" defer></script>-->
-<!--  <?php echo 99; include('php/b24.php'); ?>-->
 </head>
 <body>
-  <!-- Создаем шапку сайта -->
-  <header class="header">
-    <div class="header-wrapper">
-      <a href="#" class="header-logo">
-        <img class="header-logo-image" src="img/logo.svg" alt="logo: Pikadu">
-      </a>
-      <nav class="header-nav">
-        <ul class="header-menu">
-          <li class="header-menu-item"><a href="#" class="header-menu-link">Лучшее</a></li>
-          <li class="header-menu-item"><a href="#" class="header-menu-link">Горячее</a></li>
-          <li class="header-menu-item"><a href="#" class="header-menu-link">Подписки</a></li>
-        </ul>
-        
-      </nav>
-      <!-- /.header-nav -->
-      <div class="input-group search">
-        <input type="search" class="search-input" placeholder="Поиск по сайту">
-        <button class="search-button">
-          <img src="img/search.svg" alt="icon: search" class="search-icon">
-        </button>
-      </div>
-      <!-- /.input-group -->
-      <a href="#" class="menu-toggle" id="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </a>
-    </div>
-    <!-- /.header-wrapper -->
-  </header>
+  <!-- header -->
+  <?php
+  require 'header.html';
+  ?>
+  <!-- header END -->
 
   <div class="content">
     <main class="posts">
@@ -65,6 +29,7 @@
     <div class="post-buttons">
       <button class="page-buttons prev-page-button"><</button>
       <button class="page-buttons next-page-button">></button>
+
     </div>
     <!-- /.posts -->
     <form action="#" class="add-post">
@@ -124,7 +89,7 @@
       <div class="user">
         <div class="user-container">
           <a href="#" class="user-info">
-            <img width="40" height="40" src="img/avatar.jpeg" alt="photo: user" class="user-avatar">
+            <img width="40" height="40" src="img/avatar.jpg" alt="photo: user" class="user-avatar">
             <span class="user-name">vblimov</span>
           </a>
           <!-- /.user-info -->
