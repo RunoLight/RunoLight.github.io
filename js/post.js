@@ -10,7 +10,7 @@ const adminEmail = 'vasia-cotic@yandex.ru'
 
 let editablePostID;
 let showedPosts = 0;
-let postsCount = 999999;
+let postsCount = 10;
 
 const showPost = (userID, isPrev) => {
     let postInner = '';
@@ -192,7 +192,6 @@ const postHandlerInit = () => {
     editPostForm.addEventListener('submit', event => {
         event.preventDefault();
         const formElements = editPostForm.elements;
-        //TODO вернуть нормальные значениея
         if(formElements.namedItem('edit-post-title').value.length < 0){
             alert('Слишком короткий заголовок');
             return;
@@ -201,7 +200,6 @@ const postHandlerInit = () => {
             alert('Слишком короткий пост');
             return;
         }
-
         database.ref('post/'+editablePostID).update({
             id: editablePostID,
             title: formElements.namedItem('edit-post-title').value,
@@ -217,7 +215,6 @@ const postHandlerInit = () => {
             comments: 0,
         })
         showPost(auth.currentUser.uid);
-
         editPostForm.reset();
     })
 }

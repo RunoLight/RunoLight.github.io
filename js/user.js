@@ -1,5 +1,5 @@
 const loginElem = document.querySelector('.login');
-const user = document.querySelector('.login-form');
+const loginForm = document.querySelector('.login-form');
 const emailInput = document.querySelector('.login-email');
 const passwordInput = document.querySelector('.login-password');
 const loginSignUp = document.querySelector('.login-signUp');
@@ -10,7 +10,7 @@ const userNameElem = document.querySelector('.user-name');
 const exitElem = document.querySelector('.exit');
 const editElem = document.querySelector('.edit');
 const editElemContainer = document.querySelector('.edit-container');
-// const editButton = document.querySelector('.edit-button');
+const editButton = document.querySelector('.edit-button');
 
 const editUsername = document.querySelector('.edit-username');
 const editPhotoURL = document.querySelector('.edit-photo');
@@ -47,14 +47,17 @@ const setUsers = {
   signUp(email, password, handler) {
     auth.createUserWithEmailAndPassword(email, password)
         .then((data) => {
-          this.editUser(email.substring(0, email.indexOf('@')), null, handler)
+          this.editUser(email.substring(0, email.indexOf('@')), null, postsCount, handler)
         })
         .catch((err) => {alert(err.message)});
+    database.ref('users/'+user.uid).update({
+      postsOnPage: postsCount
+    })
   },
   editUser(displayName, photoURL, postsCount, handler){
-    
+
     const user = auth.currentUser;
-    
+    console.log(user);
     if(displayName){
       if(photoURL){
         user.updateProfile({
@@ -72,7 +75,7 @@ const setUsers = {
       database.ref('users/'+user.uid).update({
         postsOnPage: postsCount
       })
-        showPost(user.uid);
+      showPost(user.uid);
     }
   },
   sendForget(email){
@@ -93,11 +96,11 @@ const emailValidator = (email) => {
 }
 
 const clearFields = () => {
-  user.reset();
+  loginForm.reset();
 }
 
 const loginFormInit = () => {
-  user.addEventListener('submit', (event) => {
+  loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
     setUsers.logIn(emailInput.value, passwordInput.value, toggleAuthDom);
   });
@@ -125,7 +128,7 @@ const loginFormInit = () => {
     editPhotoURL.value = setUsers.user.photoURL;
     database.ref('users/'+auth.currentUser.uid).once('value', snapshot => {
       editPostsCount.value = snapshot.val().postsOnPage;
-      
+
     })
   });
   editElemContainer.addEventListener('submit', event =>{

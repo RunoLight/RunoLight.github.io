@@ -21,12 +21,10 @@ const toggleAuthDom = () => {
         userElem.style.display = '';
         userNameElem.textContent = user.displayName;
         userAvatarElem.src = user.photoURL || DEFAULT_PHOTO;
-
         newPostButton.classList.add('visible');
     } else {
         loginElem.style.display = '';
         userElem.style.display = 'none';
-
         newPostButton.classList.remove('visible');
         addPostForm.classList.remove('visible');
         postsWrapper.classList.add('visible');
