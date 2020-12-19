@@ -59,7 +59,7 @@ body {
   height: 100%;
   width: 20%;
   border: none;
-  background-color: #fff;
+  background-color: #156f56;
   position: absolute;
   right: 0;
   top: 0;
@@ -104,8 +104,15 @@ body {
 
 .post {
   background-color: #fff;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #A6BAAF;
   margin-bottom: 30px;
+}
+
+.post-pagitation {
+  background-color: #fff;
+  border: 1px solid #A6BAAF;
+  width: 67%;
+  align-self: end;
 }
 .post-body {
   padding-top: 35px;
@@ -128,6 +135,35 @@ body {
   font-size: 14px;
   line-height: 22px;
 }
+
+.pages {
+  width: 67%;
+  margin-top: 94px;
+  margin-bottom: 60px;
+}
+
+.page-buttons {
+  background-color:#156f56;
+  border-radius:11px;
+  border:1px solid #156f56;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family: Arial, serif;
+  font-size:17px;
+  padding:11px 60px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #105d48;
+  margin-right: 20px;
+}
+.page-buttons:hover {
+  background-color: #15644c;
+}
+.page-buttons:active {
+  position:relative;
+  top:1px;
+}
+
 .tags {
   margin-bottom: 22px;
   color: #bfbfbf;
@@ -144,7 +180,7 @@ body {
   margin-left: 0;
 }
 .post-footer {
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid #A6BAAF;
   background: #fafafa;
   display: flex;
   justify-content: space-between;
@@ -209,7 +245,7 @@ body {
 }
 .login{
   background-color: #fafafa;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #A6BAAF;
   padding: 15px 25px;
   align-items: center;
   justify-content: space-between;
@@ -228,7 +264,7 @@ body {
 .login-input{
   display: block;
   background-color: #fff;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #a6baaf;
   padding: 5px 15px;
   margin-bottom: 10px;
 }
@@ -246,7 +282,7 @@ body {
 }
 
 .login-signIn{
-  background-color: #fa8c16;
+  background-color: #156f56;
   border: none;
   border-radius: 2px;
   text-transform: uppercase;
@@ -279,7 +315,7 @@ body {
 
 .user {
   background-color: #fafafa;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #A6BAAF;
   padding: 15px 25px;
 }
 .user-container{
@@ -309,6 +345,7 @@ body {
 }
 .edit-container{
   display: none;
+  border: #105d48;
 }
 .edit-container.visible{
   display: block;
@@ -332,8 +369,11 @@ body {
   width: 100%;
   padding: 5px 10px;
 }
+.hidden-pagitation{
+  display: none;
+}
 .edit-button{
-  background-color: #fa8c16;
+  background-color: #156f56;
   width: 100%;
   border: none;
   border-radius: 2px;
@@ -343,6 +383,7 @@ body {
   font-size: 12px;
   margin-bottom: 10px;
 }
+
 .icon {
   fill: #000;
 }
@@ -361,7 +402,7 @@ body {
 }
 .sidebar-menu {
   margin: 0;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #A6BAAF;
   border-top: none;
   list-style-type: none;
   padding: 0;
@@ -384,7 +425,7 @@ body {
   border-right: 3px solid #faad14;
 }
 .button {
-  background: #faad14;
+  background: #156f56;
   border-radius: 4px;
   border: none;
   text-decoration: none;
@@ -427,12 +468,12 @@ body {
 }
 .card {
   background: #ffffff;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #A6BAAF;
   margin-top: 20px;
 }
 .card-header {
   background: #fafafa;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid #A6BAAF;
   padding: 23px 25px;
 }
 .card-title {
@@ -451,39 +492,13 @@ body {
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  color: #d48806;
+  color: #156f56;
 }
 .card-text {
   font-size: 14px;
   line-height: 22px;
   color: #262626;
   margin: 10px 0;
-}
-.ad {
-  display: block;
-  background-color: #fff;
-  background-image: url("../img/promo.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  width: 100%;
-  height: 260px;
-  border: 1px solid #e8e8e8;
-  margin-top: 20px;
-  position: relative;
-}
-.ad::before {
-  content: "Реклама";
-  position: absolute;
-  right: 0;
-  top: 0;
-  background: #c4c4c4;
-  padding-left: 26px;
-  padding-right: 26px;
-  font-size: 12px;
-  line-height: 20px;
-  text-align: center;
-  color: #ffffff;
 }
 .add-post,
 .edit-post{
@@ -503,7 +518,7 @@ body {
 .edit-text,
 .edit-tags{
   background: #ffffff;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #A6BAAF;
   padding: 23px 30px;
   margin-bottom: 16px;
   resize: none;

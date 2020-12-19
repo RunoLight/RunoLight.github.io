@@ -1,5 +1,5 @@
 const loginElem = document.querySelector('.login');
-const loginForm = document.querySelector('.login-form');
+const user = document.querySelector('.login-form');
 const emailInput = document.querySelector('.login-email');
 const passwordInput = document.querySelector('.login-password');
 const loginSignUp = document.querySelector('.login-signUp');
@@ -10,7 +10,7 @@ const userNameElem = document.querySelector('.user-name');
 const exitElem = document.querySelector('.exit');
 const editElem = document.querySelector('.edit');
 const editElemContainer = document.querySelector('.edit-container');
-const editButton = document.querySelector('.edit-button');
+// const editButton = document.querySelector('.edit-button');
 
 const editUsername = document.querySelector('.edit-username');
 const editPhotoURL = document.querySelector('.edit-photo');
@@ -24,7 +24,7 @@ const setUsers = {
       if(user){
         this.user = user;
         console.log(this.user.uid)
-        showAllPosts(this.user.uid);
+        showPost(this.user.uid);
       } else {
         this.user = null;
       }
@@ -38,7 +38,6 @@ const setUsers = {
         .catch((err) => {
           alert(err.message)
         })
-
   },
   logOut() {
     auth.signOut();
@@ -46,14 +45,11 @@ const setUsers = {
     toggleAuthDom();
   },
   signUp(email, password, handler) {
-    
-    auth
-        .createUserWithEmailAndPassword(email, password)
+    auth.createUserWithEmailAndPassword(email, password)
         .then((data) => {
-          this.editUser(email.substring(0, email.indexOf('@')), null, handler)})
-        .catch((err) => {
-          alert(err.message)
-        });
+          this.editUser(email.substring(0, email.indexOf('@')), null, handler)
+        })
+        .catch((err) => {alert(err.message)});
   },
   editUser(displayName, photoURL, postsCount, handler){
     
@@ -76,33 +72,32 @@ const setUsers = {
       database.ref('users/'+user.uid).update({
         postsOnPage: postsCount
       })
-        showAllPosts(user.uid);
+        showPost(user.uid);
     }
-
   },
   sendForget(email){
     if(email){
     auth.sendPasswordResetEmail(email)
         .then(() => {
           alert('Письмо отправлено')})
-    } else
-    {
+    } else {
       alert('Введите email')
     }
   }
 };
 
 const emailValidator = (email) => {
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
+  const regExp =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return regExp.test(String(email).toLowerCase());
 }
 
 const clearFields = () => {
-  loginForm.reset();
+  user.reset();
 }
 
 const loginFormInit = () => {
-  loginForm.addEventListener('submit', (event) => {
+  user.addEventListener('submit', (event) => {
     event.preventDefault();
     setUsers.logIn(emailInput.value, passwordInput.value, toggleAuthDom);
   });
@@ -144,7 +139,6 @@ const loginFormInit = () => {
     event.preventDefault();
     setUsers.sendForget(emailInput.value);
   })
-  
   setUsers.initUser(toggleAuthDom);
 }
 

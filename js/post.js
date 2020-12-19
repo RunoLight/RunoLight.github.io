@@ -4,6 +4,7 @@ const addPostForm = document.querySelector('.add-post');
 const editPostForm = document.querySelector('.edit-post');
 const nextPageButton = document.querySelector('.next-page-button');
 const prevPageButton = document.querySelector('.prev-page-button');
+const pagitation = document.querySelector('.post-pagitation');
 
 const adminEmail = 'vasia-cotic@yandex.ru'
 
@@ -11,10 +12,10 @@ let editablePostID;
 let showedPosts = 0;
 let postsCount = 999999;
 
-const showAllPosts = (userID, isPrev) => {
-    let postsHTML = '';
+const showPost = (userID, isPrev) => {
+    let postInner = '';
     let posts = [];
-    let counter = 0;
+    let cnt = 0;
     database.ref('post').orderByChild('id').once('value', snapshot => {
         (snapshot || []).forEach(item=>{
                 posts.push(`
@@ -33,22 +34,6 @@ const showAllPosts = (userID, isPrev) => {
                   <use xlink:href="img/icons.svg#like"></use>
                 </svg>
                 <span class="post-button likes-counter">${item.val().like}</span>
-              </button>
-                    <button class="post-button post-button-comments">
-                <svg width="21" height="21" class="icon icon-comment">
-                  <use xlink:href="img/icons.svg#comment"></use>
-                </svg>
-              <span class="comments-counter">${item.val().comments}</span>
-            </button>
-                    <button class="post-button post-button-save">
-                <svg width="19" height="19" class="icon icon-save">
-                  <use xlink:href="img/icons.svg#save"></use>
-                </svg>
-            </button>
-                    <button class="post-button post-button-share">
-                <svg width="17" height="19" class="icon icon-share">
-                  <use xlink:href="img/icons.svg#share"></use>
-                </svg>
             </button>
                     ${setUsers.user? item.val().author.email === (setUsers.user.email || null) || setUsers.user.email === adminEmail?
                     `<button class="post-button post-button-delete" value="${item.val().id}" onclick="deletePost(value)">
@@ -68,61 +53,55 @@ const showAllPosts = (userID, isPrev) => {
                       <a href="#" class="author-username">${item.val().author.displayName}</a>
                       <span class="post-time">${item.val().date}</span>
                     </div>
-                  <a href="#" class="author-link"><img src=${item.val().author.photo || "img/avatar.jpeg"} alt="avatar" class="author-avatar"></a>
+                  <a href="#" class="author-link"><img src=${item.val().author.photo || "img/avatar.jpg"} alt="avatar" class="author-avatar"></a>
                 </div>
                 </div>
-              </section>`);
+              </section>
+`);
     })}).then(()=> {
-        if(userID) {
+        if(userID) { // logged in
             database.ref('users/'+userID).once('value', snapshot => {
-                if (snapshot.val().postsOnPage == null) {
-                    postsCount = 5;
-                }
-                else {
-                    postsCount = snapshot.val().postsOnPage;
-                }
+                if (snapshot.val().postsOnPage == null) {postsCount = 5;}
+                else {postsCount = snapshot.val().postsOnPage;}
                 if(parseInt(isPrev) === 0 || parseInt(isPrev) === 1){
-                    if(parseInt(isPrev) === 1 && showedPosts < posts.length-parseInt(postsCount)-1) {
+                    if(parseInt(isPrev) === 1 && showedPosts < posts.length-parseInt(postsCount)) {
                         showedPosts = parseInt(showedPosts)+parseInt(postsCount);
-                        //nextPage
                     } else if (parseInt(isPrev) === 0 && showedPosts !== 0) {
-                        showedPosts=parseInt(showedPosts)-parseInt(postsCount);
-                        //prevPage
-                    } else {
-                        return;
-                    }
+                        showedPosts = parseInt(showedPosts)-parseInt(postsCount);
+                    } else {return;}
                 }
-                counter = 0;
+                cnt = 0;
                 posts.reverse().forEach(post => {
-                    if(counter >= showedPosts && counter < parseInt(showedPosts)+parseInt(postsCount)){
-                        postsHTML+=post;
+                    if(cnt >= showedPosts && cnt < parseInt(showedPosts)+parseInt(postsCount)){
+                        postInner+=post;
                     }
-                    
-                    counter++;
+                    cnt++;
                 })
-                postsWrapper.innerHTML = postsHTML;
-                postsHTML = '';
+                postsWrapper.innerHTML = postInner;
+                postInner = '';
                 addPostForm.classList.remove('visible');
                 editPostForm.classList.remove('visible');
                 postsWrapper.classList.add('visible');
             })
-        } else {
+        } else { // not logged in
             posts.reverse().forEach(post => {
-                    postsHTML+=post;
+                    postInner+=post;
             })
-            postsWrapper.innerHTML = postsHTML;
-            postsHTML = '';
+            postsWrapper.innerHTML = postInner;
+            postInner = '';
             addPostForm.classList.remove('visible');
             editPostForm.classList.remove('visible');
             postsWrapper.classList.add('visible');
         }
-        
+
     })
+    pagitation.classList.remove('hidden-pagitation');
 }
 const showAddPosts = () => {
     addPostForm.classList.add('visible');
     postsWrapper.classList.remove('visible');
     editPostForm.classList.remove('visible');
+    pagitation.classList.add('hidden-pagitation');
     editPostForm.reset();
 }
 const showEditPosts = (title, text, tags, postID) => {
@@ -132,32 +111,64 @@ const showEditPosts = (title, text, tags, postID) => {
     editPostForm.elements.namedItem('edit-post-tags').value = tags;
     editablePostID = postID;
     postsWrapper.classList.remove('visible');
+    pagitation.classList.add('hidden-pagitation');
 }
+
+
+const deletePost = (postID) => {
+    database.ref('post')
+        .once('value', snap => {
+            snap.forEach(item => {
+                if(item.val().id === postID){
+                    database.ref('post').child(item.key).remove()
+                        .then(()=>{
+                            showPost(auth.currentUser.uid)
+                            return true;
+                        })
+                }
+            })
+        })
+}
+
+const editPost = (postID) => {
+    database.ref('post')
+        .once('value', snap => {
+            snap.forEach(item => {
+                if(item.val().id === postID){
+                    showEditPosts(item.val().title, item.val().text, item.val().tags, postID)
+                }
+            })
+        })
+}
+
+// При загрузке страницы
+document.addEventListener('DOMContentLoaded', ()=> {
+    postHandlerInit();
+})
+
 const postHandlerInit = () => {
-    showAllPosts();
+    showPost();
     nextPageButton.addEventListener('click', event => {
         event.preventDefault();
-        showAllPosts(auth.currentUser.uid, 1)
+        showPost(auth.currentUser.uid, 1)
     })
     prevPageButton.addEventListener('click', event => {
         event.preventDefault();
-        showAllPosts(auth.currentUser.uid, parseInt(0))
+        showPost(auth.currentUser.uid, parseInt(0))
     })
     newPostButton.addEventListener('click', event => {
         event.preventDefault();
         showAddPosts();
     })
-    
     addPostForm.addEventListener('submit', event => {
         event.preventDefault();
         const formElements = addPostForm.elements;
-        //TODO вернуть нормальные значениея
         if(formElements.namedItem('post-title').value.length < 0){
-            alert('Слишком короткий заголовок');
+            alert('Пустой заголовок');
             return;
         }
         if(formElements.namedItem('post-text').value.length < 0){
-            alert('Слишком короткий пост');
+            alert('Пустой текст');
             return;
         }
         const postID = 'postID'+(+new Date()).toString(16)
@@ -175,11 +186,9 @@ const postHandlerInit = () => {
             like: 0,
             comments: 0,
         })
-        showAllPosts(auth.currentUser.uid);
-        
+        showPost(auth.currentUser.uid);
         addPostForm.reset();
     })
-    
     editPostForm.addEventListener('submit', event => {
         event.preventDefault();
         const formElements = editPostForm.elements;
@@ -192,7 +201,7 @@ const postHandlerInit = () => {
             alert('Слишком короткий пост');
             return;
         }
-        
+
         database.ref('post/'+editablePostID).update({
             id: editablePostID,
             title: formElements.namedItem('edit-post-title').value,
@@ -207,39 +216,8 @@ const postHandlerInit = () => {
             like: 0,
             comments: 0,
         })
-        showAllPosts(auth.currentUser.uid);
-        
+        showPost(auth.currentUser.uid);
+
         editPostForm.reset();
     })
 }
-
-const deletePost = (postID) => {
-    database.ref('post')
-        .once('value', snap => {
-            snap.forEach(item => {
-                if(item.val().id === postID){
-                    database.ref('post').child(item.key).remove()
-                        .then(()=>{
-                            showAllPosts(auth.currentUser.uid)
-                            return true;
-                        })
-                }
-            })
-        })
-    
-}
-
-const editPost = (postID) => {
-    database.ref('post')
-        .once('value', snap => {
-            snap.forEach(item => {
-                if(item.val().id === postID){
-                    showEditPosts(item.val().title, item.val().text, item.val().tags, postID)
-                }
-            })
-        })
-}
-
-document.addEventListener('DOMContentLoaded', ()=> {
-    postHandlerInit();
-})
